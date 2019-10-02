@@ -1,6 +1,6 @@
 /* This is the data we will be using to create our article components */
 /* Look over this data, then proceed to line 91*/
-const data = [
+const articledata = [
   {
     title: 'Lambda School Students: "We\'re the best!"',
     date: 'Nov 5th, 2018',
@@ -114,15 +114,49 @@ function Article (title, date, firstParagraph, secondParagraph, thirdParagraph) 
   const p1 = document.createElement('p');
   const p2 = document.createElement('p');
   const p3 = document.createElement('p');
+  const expandButton = document.createElement('span');
+
+  article.appendChild(artTitle);
+  article.appendChild(artDate);
+  article.appendChild(p1);
+  article.appendChild(p2);
+  article.appendChild(p3);
+  article.appendChild(expandButton);
+
+
+  article.classList.add('article');
+  artDate.classList.add('date');
+  expandButton.classList.add('expandButton');
+
+  artTitle.textContent = title;
+  artDate.textContent = date;
+  p1.textContent = firstParagraph;
+  p2.textContent = secondParagraph;
+  p3.textContent = thirdParagraph;
+  expandButton.textContent = ('Open');
+
+
+  // Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
+  expandButton.addEventListener('click', (e) => {
+    article.classList.toggle('article-open');
+    console.log("clicked!");
+  });
+
+  // Step 3: return the entire component.
+  return article
+
 }
+// Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+articledata.forEach(data => {
+  articles.appendChild(Article(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph))
+});
 
   
 
-  // Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
 
-  // Step 3: return the entire component.
 
-  // Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+  
+
 
   // Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
